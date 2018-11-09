@@ -6,7 +6,7 @@ set design system
 set projdir ./
 
 #Device name
-set partname "xc7z020clg400-1"
+set partname "xc7z010clg400-1"
 
 #Paths to all IP blocks to use in Vivado "system.bd"
 

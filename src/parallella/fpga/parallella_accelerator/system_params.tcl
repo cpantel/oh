@@ -6,7 +6,7 @@
 set design parallella_base
 set projdir ./
 set root "../../.."
-set partname "xc7z020clg400-1"
+set partname "xc7z010clg400-1"
 
 set hdl_files [list \
                    $root/parallella/hdl/parallella_accelerator.v \

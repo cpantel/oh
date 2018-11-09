@@ -29,7 +29,7 @@ if { [string first $scripts_vivado_version $current_vivado_version] == -1 } {
 
 # If you do not already have a project created,
 # you can create a project using the following command:
-#    create_project project_1 myproj -part xc7z020clg400-1
+#    create_project project_1 myproj -part xc7z010clg400-1
 
 # CHECKING IF PROJECT EXISTS
 if { [get_projects -quiet] eq "" } {
