@@ -7,7 +7,9 @@
 
   `define REG_INPUT0 6'h0
   `define REG_INPUT1 6'h1
-  `define REG_OUTPUT 6'h2
+  `define REG_INPUT2 6'h2
+  `define REG_INPUT3 6'h3
+  `define REG_OUTPUT 6'h4
 
  `endif
 

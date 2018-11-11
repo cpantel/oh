@@ -74,6 +74,8 @@ module accelerator (/*AUTOARG*/
    wire [31:0] 	   result;
    reg [31:0] 	   reg_input0;
    reg [31:0] 	   reg_input1;
+   reg [31:0] 	   reg_input2;
+   reg [31:0] 	   reg_input3;
    
    /*AUTOWIRE*/
    // Beginning of automatic wires (for undeclared instantiated-module outputs)
@@ -124,10 +126,14 @@ module accelerator (/*AUTOARG*/
    
    assign input0_match  = acc_match & (dstaddr_in[RFAW+1:2]==`REG_INPUT0);
    assign input1_match  = acc_match & (dstaddr_in[RFAW+1:2]==`REG_INPUT1);
+   assign input2_match  = acc_match & (dstaddr_in[RFAW+1:2]==`REG_INPUT2);
+   assign input3_match  = acc_match & (dstaddr_in[RFAW+1:2]==`REG_INPUT3);
    assign output_match  = acc_match & (dstaddr_in[RFAW+1:2]==`REG_OUTPUT);
    
    assign input0_write  = input0_match  &  write_in;
    assign input1_write  = input1_match  &  write_in;
+   assign input2_write  = input2_match  &  write_in;
+   assign input3_write  = input3_match  &  write_in;
    assign output_read   = output_match  & ~write_in;
 
    //input0
@@ -140,13 +146,23 @@ module accelerator (/*AUTOARG*/
      if(input1_write)
        reg_input1[31:0] <= data_in[31:0];
 
-  
+   //input2
+   always @ (posedge clk)
+     if(input2_write)
+       reg_input2[31:0] <= data_in[31:0];
+
+   //input3
+   always @ (posedge clk)
+     if(input3_write)
+       reg_input3[31:0] <= data_in[31:0];
+
+ 
    //#############################
    //#ACCELERATOR 
    //#############################
 
    //(PUT CODE HERE!)
-   assign result[31:0] = reg_input0[31:0] + reg_input1[31:0];
+   assign result[31:0] = reg_input0[31:0] +  reg_input1[31:0] + reg_input2[31:0] +  reg_input3[31:0];
    
    //#########################
    //#READBACK WITH PIPELINE
